@@ -33,7 +33,7 @@ class Directory extends Component {
                     elevation: 42,
                     description: "You'll never want to leave this hidden gem, deep within the lush Redux Woods."
                 }
-            ],
+            ], 
         };
     }
 
