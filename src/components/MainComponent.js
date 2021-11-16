@@ -27,8 +27,7 @@ class Main extends Component {
             <div>
                 <Header />
                 <Switch>
-                <Route path='/home' component={HomePage} />
-                    <Directory campsites={this.state.campsites} />
+                    <Route path='/home' component={HomePage} />
                     <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites } />} />
                     <Redirect to='/home' />
                 </Switch>
