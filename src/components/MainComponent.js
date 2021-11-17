@@ -6,13 +6,18 @@ import Contact from './ContactComponent';
 import Directory from './DirectoryComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { CAMPSITES } from '../shared/campsites.js';
+import { COMMENTS } from '../shared/comments.js';
+import { PROMOTIONS } from '../shared/promotions.js';
+import { PARTNERS } from '../shared/partners.js';
 
 class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
             campsites: CAMPSITES,
-            selectedCampsite: null
+            comments: COMMENTS,
+            partners: PARTNERS,
+            promotions: PROMOTIONS
         };
     }
 
@@ -21,7 +26,11 @@ class Main extends Component {
     render() {
         const HomePage = () => {
             return (
-                <Home />
+                <Home 
+                    campsite={this.state.campsites.filter(campsite => campsite.featured)[0]}
+                    partner={this.state.partners.filter(partner => partner.featured)[0]}
+                    promotion={this.state.promotions.filter(promotion => promotion.featured)[0]}
+                />
             );
         };
         return (
