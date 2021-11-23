@@ -25,6 +25,12 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    handleBlur = (field) => () => {
+        this.setState({
+            touched: {...this.state.touched, [field]: true}
+        });
+    }
+
     handleInputChange(event) {
         const target = event.target;
         const name = target.name;
@@ -82,6 +88,7 @@ class Contact extends Component {
                                     <Input type="text" id="firstName" name="firstName"
                                         placeholder="First Name"
                                         value={this.state.firstName}
+                                        onBlur={this.handleBlur('firstName')}
                                         onChange={this.handleInputChange} />
                                 </Col>
                             </FormGroup>
@@ -91,6 +98,7 @@ class Contact extends Component {
                                     <Input type="text" id="lastName" name="lastName"
                                         placeholder="Last Name"
                                         value={this.state.lastName}
+                                        onBlur={this.handleBlur('lastName')}
                                         onChange={this.handleInputChange} />
                                 </Col>                        
                             </FormGroup>
@@ -100,6 +108,7 @@ class Contact extends Component {
                                     <Input type="tel" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
                                         value={this.state.phoneNum}
+                                        onBlur={this.handleBlur('phoneNum')}
                                         onChange={this.handleInputChange} />
                                 </Col>
                             </FormGroup>
@@ -109,6 +118,7 @@ class Contact extends Component {
                                     <Input type="email" id="email" name="email"
                                         placeholder="Email"
                                         value={this.state.email}
+                                        onBlur={this.handleBlur('email')}
                                         onChange={this.handleInputChange} />
                                 </Col>
                             </FormGroup>
