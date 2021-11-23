@@ -16,6 +16,7 @@ class Contact extends Component {
             contactType: 'By Phone',
             feedback: ''
         };
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleInputChange(event) {
@@ -27,7 +28,7 @@ class Contact extends Component {
             [name]: value
         });
     }
-    
+
     render() {
         return (
             <div className="container">
