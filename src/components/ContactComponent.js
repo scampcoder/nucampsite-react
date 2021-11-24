@@ -25,6 +25,42 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    validate(firstName, lastName, phoneNum, email) {
+        const errors = {
+            firstName: '',
+            lastName: '',
+            phoneNum: '',
+            email: ''
+        };
+
+        if(this.state.touched.firstName) {
+            if(firstName.length < 2) {
+                errors.firstName = "First name must be at least 2 characters.";
+            } else if (firstName.length > 15) {
+                errors.firstName = "First name must be 15 or less characters.";
+            }
+        }
+
+        if(this.state.touched.lastName) {
+            if(lastName.length < 2) {
+                errors.firstName = "Last name must be at least 2 characters.";
+            } else if (lastName.length > 15) {
+                errors.lastName = "Last name must be 15 or less characters.";
+            }
+        }
+
+        const reg = /^\d+$/;
+        if(this.state.touched.phoneNum && !reg.test(phoneNum)) {
+            errors.phoneNum = 'The phone number should contain only numbers.';
+        }
+
+        if(this.state.touched.email && !email.includes('@')) {
+            errors.email = 'Email should contain an @'
+        }
+
+        return errors;
+    }
+
     handleBlur = (field) => () => {
         this.setState({
             touched: {...this.state.touched, [field]: true}
