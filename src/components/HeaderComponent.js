@@ -69,12 +69,19 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                             </Nav>
+                            {/* Modal Btn */}
+                            <span className="navbar-text ml-auto">
+                                <Button outline onClick={this.toggleModal}>
+                                    <i className="fa fa-sign-in fa-lg" /> Login
+                                </Button>
+                            </span>
+                            {/* End of Modal Btn */}
                         </Collapse>
                     </div>
                 </Navbar>
                 {/* Modal */}
-                <Modal>
-                    <ModalHeader>Login</ModalHeader>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody></ModalBody>
                 </Modal>
                 {/* End of Modal */}
