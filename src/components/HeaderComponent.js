@@ -7,15 +7,24 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.toggleNav = this.toggleNav.bind(this);
         this.state = {
-          isNavOpen: false
+          isNavOpen: false,
+          isModalOpen: false
         };
+
+        this.toggleNav = this.toggleNav.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
 
     toggleNav() {
         this.setState({
             isNavOpen: !this.state.isNavOpen
+        });
+    }
+
+    toggleModal () {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
         });
     }
 
@@ -63,6 +72,12 @@ class Header extends Component {
                         </Collapse>
                     </div>
                 </Navbar>
+                {/* Modal */}
+                <Modal>
+                    <ModalHeader>Login</ModalHeader>
+                    <ModalBody></ModalBody>
+                </Modal>
+                {/* End of Modal */}
             </React.Fragment>
         );
     }
