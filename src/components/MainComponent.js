@@ -8,21 +8,18 @@ import CampsiteInfo from './CampsiteInfoComponent';
 import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { CAMPSITES } from '../shared/campsites.js';
-import { COMMENTS } from '../shared/comments.js';
-import { PROMOTIONS } from '../shared/promotions.js';
-import { PARTNERS } from '../shared/partners.js';
+
+const mapStateToProps = state => {
+    return {
+        campsites: state.campsites,
+        comments: state.comments,
+        partners: state.partners,
+        promotions: state.promotions
+    }
+}
 
 class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            campsites: CAMPSITES,
-            comments: COMMENTS,
-            partners: PARTNERS,
-            promotions: PROMOTIONS
-        };
-    }
+  
 
 
 
