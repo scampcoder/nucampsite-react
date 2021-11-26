@@ -3,6 +3,21 @@ import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap'
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
+{/*IF ANY OF THESE TESTS FAIL THEY WILL CREATE AN ERROR*/}
+{/*checks if there is a value and if the 
+length is greater than 0, will return false 
+if no, true if yes*/}
+const required = val => val && val.length; 
+{/*this is a nested arrow function
+first checks if there is no value, so it has not exceeded maxLength/len
+second checks if value length is less or equal to the maxLength*/}
+const maxLength = len => val => !val || (val.length <= len)
+const minLength = len => val => val && (val.length >= len);
+{/*checks if the input is a number or can be converted to one
+if not it will convert to NaN and test will fail (it's not, not a number)*/}
+const isNumber = val => !isNaN(+val);
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
+
 class Contact extends Component {
     constructor(props) {
         super(props);
