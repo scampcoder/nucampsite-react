@@ -4,6 +4,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
 
+const required = val => val && val.length;
 const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
 
@@ -69,11 +70,13 @@ class CommentForm extends Component {
                         <div className="form-group">
                             <Label htmlFor="author">Your Name</Label>
                             <Control.text 
-                                className="form-control" 
+                                className="form-control"
+                                placeholder="Your Name" 
                                 model=".author" 
                                 name="author" 
                                 id="author"
                                 validators= {{
+                                    required,
                                     minLength: minLength(2),
                                     maxLength: maxLength(15)
                                 }}
@@ -84,6 +87,7 @@ class CommentForm extends Component {
                                 show="touched"
                                 component="div"
                                 messages={{
+                                            required: "Required",
                                             minLength: 'Must be at least 2 characters',
                                             maxLength: 'Must be 15 characters or less'
                                         }}
@@ -91,7 +95,16 @@ class CommentForm extends Component {
                         </div>
                         <div className="form-group">
                             <Label htmlFor="text">Comment</Label>
-                            <Control.textarea className="form-control" model=".text" name="text" id="text" />
+                            <Control.textarea className="form-control" model=".text" name="text" id="text" validators={{required}} />
+                            <Errors
+                                className="text-danger"
+                                model=".text"
+                                show="touched"
+                                component="div"
+                                messages={{
+                                            required: "Required"
+                                        }}
+                            />
                         </div> 
                         <Button type="submit" value="submit" color="primary">Submit</Button>
                     </LocalForm>
