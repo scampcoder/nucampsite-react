@@ -6,7 +6,7 @@ class CommentForm extends Component {
     render() {
         return (
             <button outline>
-                <i className="fas fa-pencil-alt fa-lg"></i>
+                <i className="fa fa-pencil fa-lg"></i>
             </button>
         )
     }
@@ -36,6 +36,7 @@ function RenderComments({comments}) {
                         --{ comment.author }, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
                     </p>
                 ) }
+                <CommentForm />
             </div>
         )
     }
