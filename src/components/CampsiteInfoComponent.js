@@ -4,7 +4,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
 
-const maxLength = len => val => !val || (val.length <= len)
+const maxLength = len => val => !val || (val.length <= len);
 const minLength = len => val => val && (val.length >= len);
 
 class CommentForm extends Component {
@@ -59,7 +59,7 @@ class CommentForm extends Component {
                         <div className="form-group">
                             <Label htmlFor="rating">Rating</Label>
                             <Control.select defaultValue="1" className="form-control" model=".rating" name="rating" id="rating">
-                                <option value="1">1</option>
+                                <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                                 <option value='4'>4</option>
@@ -84,7 +84,6 @@ class CommentForm extends Component {
                                 show="touched"
                                 component="div"
                                 messages={{
-
                                             minLength: 'Must be at least 2 characters',
                                             maxLength: 'Must be 15 characters or less'
                                         }}
