@@ -1,6 +1,16 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Card, CardImg, CardBody, CardText, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
+
+class CommentForm extends Component {
+    render() {
+        return (
+            <button outline>
+                <i className="fas fa-pencil-alt fa-lg"></i>
+            </button>
+        )
+    }
+}
 
 function RenderCampsite({campsite}) {
     return (
