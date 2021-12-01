@@ -23,3 +23,8 @@ export const campsitesLoading = () => ({
     type: ActionTypes.CAMPSITES_LOADING
 });
 
+export const campsitesFailed = errMess => ({
+    type: ActionTypes.CAMPSITES_FAILED,
+    payload: errMess
+});
+
