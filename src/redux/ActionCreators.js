@@ -18,3 +18,8 @@ export const fetchCampsites = () => dispatch => {
         dispatch(addCampsites(CAMPSITES));
     }, 2000);
 }
+
+export const campsitesLoading = () => ({
+    type: ActionTypes.CAMPSITES_LOADING
+});
+
