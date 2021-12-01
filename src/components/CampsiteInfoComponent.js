@@ -164,6 +164,17 @@ function CampsiteInfo(props) {
             </div>
         );
     }
+    if(props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     if(props.campsite) {
         return (
             <div className="container">
