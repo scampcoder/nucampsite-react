@@ -1,0 +1,1 @@
+import { PARTNERS } from '../shared/partners';
