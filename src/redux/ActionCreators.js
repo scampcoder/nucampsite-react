@@ -49,3 +49,25 @@ export const addComments = comments => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
 });
+
+export const fetchPromotions = () => dispatch => {
+    dispatch(promotionsLoading());
+
+    return fetch(baseUrl + 'promotions') //location of info needed
+        .then(response => response.json()) //call to fetch returns a promise. once that resolves, convert response from JSON to JS (array of campsites)
+        .then(promotions => dispatch(addPromotions(promotions))); //new promise (JS campsites array), then dispatch with addCampsites with 'campsites' as payload
+};
+
+export const promotionsLoading = () => ({
+    type: ActionTypes.PROMOTIONS_LOADING
+});
+
+export const promotionsFailed = errMess => ({
+    type: ActionTypes.PROMOTIONS_FAILED,
+    payload: errMess
+});
+
+export const addPromotions = campsites => ({
+    type: ActionTypes.ADD_PROMOTIONS,
+    payload: promotions
+});
