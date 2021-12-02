@@ -16,9 +16,24 @@ export const fetchCampsites = () => dispatch => {
     dispatch(campsitesLoading());
 
     return fetch(baseUrl + 'campsites') //location of info needed
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        }
+        )
         .then(response => response.json()) //call to fetch returns a promise. once that resolves, convert response from JSON to JS (array of campsites)
-        .then(campsites => dispatch(addCampsites(campsites))); //new promise (JS campsites array), then dispatch with addCampsites with 'campsites' as payload
-}
+        .then(campsites => dispatch(addCampsites(campsites))) //new promise (JS campsites array), then dispatch with addCampsites with 'campsites' as payload
+        .catch(error => dispatch(campsitesFailed(error.message)));
+};
 
 export const campsitesLoading = () => ({
     type: ActionTypes.CAMPSITES_LOADING
