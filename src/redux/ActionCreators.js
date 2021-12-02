@@ -40,3 +40,12 @@ export const fetchComments = () => dispatch => {
         .then(comments => dispatch(addComments(comments)));
 };
 
+export const commentsFailed = errMess => ({
+    type: ActionTypes.COMMENTS_FAILED,
+    payload: errMess
+});
+
+export const addComments = comments => ({
+    type: ActionTypes.ADD_COMMENTS,
+    payload: comments
+});
