@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { CAMPSITES } from '../shared/campsites';
+import { baseUrl } from '../shared/baseUrl';
 
 
 export const addComment = (campsiteId, rating, author, text) => ({
@@ -14,9 +14,10 @@ export const addComment = (campsiteId, rating, author, text) => ({
 
 export const fetchCampsites = () => dispatch => {
     dispatch(campsitesLoading());
-    setTimeout(() => {
-        dispatch(addCampsites(CAMPSITES));
-    }, 2000);
+
+    return fetch(baseUrl + 'campsites') //location of info needed
+        .then(response => response.json()) //call to fetch returns a promise. once that resolves, convert response from JSON to JS (array of campsites)
+        .then(campsites => dispatch(addCampsites(campsites))); //new promise (JS campsites array), then dispatch with addCampsites with 'campsites' as payload
 }
 
 export const campsitesLoading = () => ({
