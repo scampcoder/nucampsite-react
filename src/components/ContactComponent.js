@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem, Button, Label, Col, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, Form, Errors, Actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 
 {/*IF ANY OF THESE TESTS FAIL THEY WILL CREATE AN ERROR*/}
 {/*checks if there is a value and if the 
