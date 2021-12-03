@@ -1,7 +1,9 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform } from 'react-animation-components';
+import Fade from 'reactstrap/lib/Fade';
 
 
 
@@ -11,7 +13,7 @@ function About(props) {
         if(partner){
             return (
                 <>
-                  <Media object src={partner.image} alt={partner.name} width="150" /> 
+                  <Media object src={baseUrl + partner.image} alt={partner.name} width="150" /> 
                   <Media body className="ml-5 mb-4">
                       <Media heading>{partner.name}</Media>
                       {partner.description}
@@ -43,25 +45,36 @@ function About(props) {
             </div>
             <div className="row row-content">
                 <div className="col-sm-6">
+                    <FadeTransform in transformProps={{
+                            enterTransform: 'translateX(0px)',
+                            exitTransform: 'translateX(-100px)'
+                        }}>
                     <h3>Our Mission</h3>
                     <p>We present a curated database of the best campsites in the vast woods and backcountry of the World Wide Web Wilderness. We increase access to adventure for the public while promoting safe and respectful use of resources. The expert wilderness trekkers on our staff personally verify each campsite to make sure that they are up to our standards. We also present a platform for campers to share reviews on campsites they have visited with each other.</p>
+                    </FadeTransform>
                 </div>
                 <div className="col-sm-6">
-                    <Card>
-                        <CardHeader className="bg-primary text-white"><h3>Facts At a Glance</h3></CardHeader>
-                        <CardBody>
-                            <dl className="row">
-                                <dt className="col-6">Founded</dt>
-                                <dd className="col-6">February 3, 2016</dd>
-                                <dt className="col-6">No. of Campsites in 2019</dt>
-                                <dd className="col-6">563</dd>
-                                <dt className="col-6">No. of Reviews in 2019</dt>
-                                <dd className="col-6">4388</dd>
-                                <dt className="col-6">Employees</dt>
-                                <dd className="col-6">42</dd>
-                            </dl>
-                        </CardBody>
-                    </Card>
+                    <FadeTransform in
+                        transformProps={{
+                            enterTransform: 'translateX(0px)',
+                            exitTransform: 'translateX(100px)'
+                        }}>
+                        <Card>
+                            <CardHeader className="bg-primary text-white"><h3>Facts At a Glance</h3></CardHeader>
+                            <CardBody>
+                                <dl className="row">
+                                    <dt className="col-6">Founded</dt>
+                                    <dd className="col-6">February 3, 2016</dd>
+                                    <dt className="col-6">No. of Campsites in 2019</dt>
+                                    <dd className="col-6">563</dd>
+                                    <dt className="col-6">No. of Reviews in 2019</dt>
+                                    <dd className="col-6">4388</dd>
+                                    <dt className="col-6">Employees</dt>
+                                    <dd className="col-6">42</dd>
+                                </dl>
+                            </CardBody>
+                        </Card>
+                    </FadeTransform>
                 </div>
                 <div className="col">
                     <Card className="bg-light mt-3">
