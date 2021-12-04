@@ -79,7 +79,7 @@ class Main extends Component {
                             <Route path='/home' component={HomePage} />
                             <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites } />} />
                             <Route path='/directory/:campsiteId' component={CampsiteWithId} />
-                            <Route path='/aboutus' render={() => <About partners={this.props.partners} />} />
+                            <Route path='/aboutus' render={() => <About partners={this.props.partners.partners} />} />
                             <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
                             <Redirect to='/home' />
                         </Switch>

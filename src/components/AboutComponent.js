@@ -10,7 +10,7 @@ function PartnerList({ partners, isLoading, errMess }) {
     const partnersList = partners.map(partner => {
         return (
             //<h5>{partner.name}</h5>
-            <Media tag="li" kay={partner.id}><RenderPartner partner={partner}/></Media>
+            <Media tag="li" key={partner.id}><RenderPartner partner={partner}/></Media>
         );
     });
     if(isLoading) {
@@ -27,7 +27,7 @@ function PartnerList({ partners, isLoading, errMess }) {
     return (
         <div className="col mt-4">
             <Media list>
-                {partners}
+                {partnersList}
             </Media>
         </div>
     )
