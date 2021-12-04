@@ -146,3 +146,40 @@ export const addPromotions = promotions => ({
     type: ActionTypes.ADD_PROMOTIONS,
     payload: promotions
 });
+
+export const partnersLoading = () => ({
+    type: ActionTypes.PARTNERS_LOADING
+});
+
+export const partnersFailed = errMess => ({
+    type: ActionTypes.PARTNERS_FAILED,
+    payload: errMess
+});
+
+export const addPartners = partners => ({
+    type: ActionTypes.ADD_PARTNERS,
+    payload: partners
+});
+
+export const fetchPartners = () => dispatch => {
+    dispatch(partnersLoading());
+
+    return fetch(baseUrl + 'partners') //location of info needed
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            const errMess = new Error(error.message);
+            throw errMess;
+        }
+        )
+        .then(response => response.json()) //call to fetch returns a promise. once that resolves, convert response from JSON to JS (array of promotions)
+        .then(partners => dispatch(addPartners(partners))) //new promise (JS promotions array), then dispatch with addPromotions with 'promotions' as payload
+        .catch(error => dispatch(partnersFailed(error.message)));
+};
