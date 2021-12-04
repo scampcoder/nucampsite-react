@@ -54,7 +54,6 @@ class Contact extends Component {
     }
 
     handleSubmit(values) {
-        console.log('here:', values)
         this.props.postFeedback(values);
     }
 

@@ -186,18 +186,6 @@ export const fetchPartners = () => dispatch => {
 
 export const postFeedback = (feedback) => ()  => {
 
-    console.log('there:', feedback);
-    // const newFeedback = {
-    //     firstName: firstName,
-    //     lastName: lastName,
-    //     phoneNum: phoneNum,
-    //     email: email,
-    //     agree: agree,
-    //     contactType: contactType,
-    //     feedback: feedback,
-    // };
-    // newFeedback.date = new Date().toISOString(); //grabs date comment was made
-
     return fetch(baseUrl + 'feedback', {
         method: 'POST',
         body: JSON.stringify(feedback),
