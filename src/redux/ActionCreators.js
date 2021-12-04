@@ -183,3 +183,36 @@ export const fetchPartners = () => dispatch => {
         .then(partners => dispatch(addPartners(partners))) //new promise (JS promotions array), then dispatch with addPromotions with 'promotions' as payload
         .catch(error => dispatch(partnersFailed(error.message)));
 };
+
+export const postFeedback = (firstName, lastName, phoneNum, email, agree, contactType, feedback) => {
+    const newFeedback = {
+        firstName: firstName,
+        lastName: lastName,
+        phoneNum: phoneNum,
+        email: email,
+        agree: agree,
+        contactType: contactType,
+        feedback: feedback,
+    };
+    newFeedback.date = new Date().toISOString(); //grabs date comment was made
+
+    return fetch(baseUrl + 'feedback', {
+        method: 'POST',
+        body: JSON.stringify(newFeedback),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => { throw error; }
+    )
+    .then(response => alert('Thank you for your feedback' + response.json()))
+};
