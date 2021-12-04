@@ -10,7 +10,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { postComment, fetchCampsites, fetchComments, fetchPromotions, fetchPartners } from '../redux/ActionCreators';
+import { postComment, fetchCampsites, fetchComments, fetchPromotions, fetchPartners, postFeedback } from '../redux/ActionCreators';
 
 
 const mapStateToProps = state => {
@@ -28,7 +28,8 @@ const mapDispatchToProps = {
     resetFeedbackForm: () => (actions.reset('feedbackForm')),
     fetchComments: () => (fetchComments()),
     fetchPromotions: () => (fetchPromotions()),
-    fetchPartners: () => (fetchPartners())
+    fetchPartners: () => (fetchPartners()),
+    postFeedback: (feedback) => (postFeedback(feedback))
 };
 
 class Main extends Component {
@@ -80,7 +81,7 @@ class Main extends Component {
                             <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites } />} />
                             <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                             <Route path='/aboutus' render={() => <About partners={this.props.partners.partners} />} />
-                            <Route exact path='/contactus' render={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />} />
+                            <Route exact path='/contactus' render={() => <Contact postFeedback={this.props.postFeedback} />} />
                             <Redirect to='/home' />
                         </Switch>
                     </CSSTransition>
