@@ -2,15 +2,16 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
-import { FadeTransform } from 'react-animation-components';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 import { Loading } from "./LoadingComponent";
 
 
 function PartnerList({ partners, isLoading, errMess }) {
     const partnersList = partners.map(partner => {
         return (
-            //<h5>{partner.name}</h5>
-            <Media tag="li" key={partner.id}><RenderPartner partner={partner}/></Media>
+            <Fade key={partner.id}>
+                <Media tag="li"><RenderPartner partner={partner}/></Media>
+            </Fade>
         );
     });
     if(isLoading) {
@@ -27,7 +28,7 @@ function PartnerList({ partners, isLoading, errMess }) {
     return (
         <div className="col mt-4">
             <Media list>
-                {partnersList}
+                <Stagger in>{partnersList}</Stagger>
             </Media>
         </div>
     )
