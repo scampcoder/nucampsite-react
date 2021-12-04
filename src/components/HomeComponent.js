@@ -51,7 +51,7 @@ function Home(props) {
           <RenderCard
             item={props.partner}
             isLoading={props.partnerLoading}
-            errMess={props.partnersErrMess}
+            errMess={props.partnerErrMess}
           />
         </div>
       </div>

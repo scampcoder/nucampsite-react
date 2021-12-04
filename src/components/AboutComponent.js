@@ -3,33 +3,53 @@ import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'r
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform } from 'react-animation-components';
+import { Loading } from "./LoadingComponent";
 
 
-
-
-function About(props) {
-    
-    const RenderPartner = ({partner}) => {
-        if(partner){
-            return (
-                <>
-                  <Media object src={baseUrl + partner.image} alt={partner.name} width="150" /> 
-                  <Media body className="ml-5 mb-4">
-                      <Media heading>{partner.name}</Media>
-                      {partner.description}
-                  </Media>
-                </>
-            )
-        }
-        return <div></div>
-    }
-
-    const partners = props.partners.map(partner => {
+function PartnerList({ partners, isLoading, errMess }) {
+    const partnersList = partners.map(partner => {
         return (
             //<h5>{partner.name}</h5>
             <Media tag="li" kay={partner.id}><RenderPartner partner={partner}/></Media>
         );
     });
+    if(isLoading) {
+        return (
+            <Loading />
+        )
+    } else if(errMess) {
+        return (
+            <div className="col">
+                <h4>{errMess}</h4>
+            </div>
+        )
+    }
+    return (
+        <div className="col mt-4">
+            <Media list>
+                {partners}
+            </Media>
+        </div>
+    )
+}
+
+const RenderPartner = ({partner}) => {
+    if(partner){
+        return (
+            <>
+              <Media object src={baseUrl + partner.image} alt={partner.name} width="150" /> 
+              <Media body className="ml-5 mb-4">
+                  <Media heading>{partner.name}</Media>
+                  {partner.description}
+              </Media>
+            </>
+        )
+    }
+    return <div></div>
+}
+
+function About(props) {
+    
 
     return (
         <div className="container">
@@ -94,11 +114,7 @@ function About(props) {
                 <div className="col-12">
                     <h3>Community Partners</h3>
                 </div>
-                <div className="col mt-4">
-                    <Media list>
-                        {partners}
-                    </Media>
-                </div>
+               <PartnerList partners={props.partners}/>
             </div>
         </div>
     );
